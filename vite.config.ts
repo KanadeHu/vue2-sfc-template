@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue2'
 import parseHtml from 'vite-plugin-parse-html'
 import legacy from '@vitejs/plugin-legacy'
 
+import { chunkSizeWarningLimit, OUT_DIR, terserOptions } from './config/build'
 import proxy from './config/proxy'
 import config from './config/devServer'
 
@@ -47,8 +48,15 @@ export default defineConfig({
     ],
     extensions: ['.js', '.json', '.ts', 'tsx', '.vue'],
   },
+  css: {},
   server: {
     proxy,
     ...config,
+  },
+  build: {
+    terserOptions,
+    reportCompressedSize: false,
+    chunkSizeWarningLimit,
+    outDir: OUT_DIR,
   },
 })

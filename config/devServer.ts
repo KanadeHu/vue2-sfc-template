@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { chrome } from 'chrome-paths'
 // 端口号
 const port = 4400
