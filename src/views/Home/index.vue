@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>{{ a }}</div>
+    <div class="warning-text">{{ a }}</div>
 
     <div>{{ count }}</div>
     <button @click="increment">自增</button>
@@ -19,4 +19,10 @@ const { count } = storeToRefs(counterStore)
 const { increment } = counterStore
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.warning-text {
+  color: $theme-color;
+  text-decoration: dashed;
+  backface-visibility: visible;
+}
+</style>

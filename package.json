@@ -30,6 +30,7 @@
     "@vue/babel-preset-app": "^5.0.4",
     "@vue/compiler-sfc": "^3.2.33",
     "@vue/test-utils": "^2.0.0-rc.18",
+    "autoprefixer": "^10.4.12",
     "babel-jest": "^28.1.0",
     "chrome-paths": "^1.0.1",
     "eslint": "^8.15.0",

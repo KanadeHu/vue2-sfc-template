@@ -10,11 +10,11 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "baseUrl": ".",
     "lib": ["esnext", "dom", "DOM.Iterable", "ES6"],
     "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     // 方便模块解析， 注意我们还需要配置vite中的别名，同步起来
     "paths": {
       "@/*": ["src/*"],

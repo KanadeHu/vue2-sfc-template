@@ -6,7 +6,7 @@ interface ImportMetaEnv {
    */
   VITE_DEV_PORT: number
   /**
-   * @description 开发环境路径
+   * @description 开发环境
    */
-  VITE_DEV_PATH: string
+  VITE_ENV_TYPE: 'dev' | 'test' | 'pro' | 'pre'
 }

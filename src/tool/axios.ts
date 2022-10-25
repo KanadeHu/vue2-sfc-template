@@ -35,10 +35,7 @@ axiosInstance.interceptors.response.use(
 )
 
 // 通用的请求方法体
-const axiosHttp = async <T extends Record<string, any> | null>(
-  config: AxiosRequestConfig,
-  desc: string,
-): Promise<T> => {
+const axiosHttp = async <T = Record<string, any> | null>(config: AxiosRequestConfig, desc: string): Promise<T> => {
   try {
     const { data } = await axiosInstance.request<ResponseData<T>>(config)
     if (data.success) {

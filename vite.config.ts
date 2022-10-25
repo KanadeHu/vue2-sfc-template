@@ -1,14 +1,18 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { resolve } from 'path'
 
-import { defineConfig } from 'vite'
+import { defineConfig, normalizePath } from 'vite'
 import vue from '@vitejs/plugin-vue2'
 import parseHtml from 'vite-plugin-parse-html'
 import legacy from '@vitejs/plugin-legacy'
+import autoprefixer from 'autoprefixer'
 
 import { chunkSizeWarningLimit, OUT_DIR, terserOptions } from './config/build'
 import proxy from './config/proxy'
 import config from './config/devServer'
+
+// 全局scss变量文件导入
+const variablePath = normalizePath(resolve('./src/styles/variable.scss'))
 
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir)
@@ -48,7 +52,21 @@ export default defineConfig({
     ],
     extensions: ['.js', '.json', '.ts', 'tsx', '.vue'],
   },
-  css: {},
+  css: {
+    preprocessorOptions: {
+      scss: {
+        javascriptEnabled: true,
+        additionalData: `@import "${variablePath}";`,
+      },
+    },
+    postcss: {
+      plugins: [
+        autoprefixer({
+          overrideBrowserslist: ['Chrome > 40', 'ff > 31', 'ie 9'],
+        }),
+      ],
+    },
+  },
   server: {
     proxy,
     ...config,
