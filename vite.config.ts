@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue2'
 import parseHtml from 'vite-plugin-parse-html'
 import legacy from '@vitejs/plugin-legacy'
 import autoprefixer from 'autoprefixer'
+import viteEslint from 'vite-eslint-plugin'
 
 import { chunkSizeWarningLimit, OUT_DIR, terserOptions } from './config/build'
 import proxy from './config/proxy'
@@ -42,6 +43,7 @@ export default defineConfig({
         'Edge >= 15',
       ],
     }),
+    viteEslint(),
   ],
   resolve: {
     alias: [

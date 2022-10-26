@@ -11,7 +11,7 @@
  * @param status {number} 错误状态码
  * @param desc {string} 接口描述信息
  */
-export default function errorHandle(status: number, desc: string) {
+export default function errorHandle(status: number, _desc: string) {
   switch (status) {
     case 401:
       // notificat('用户登录失败', desc)xxxx
