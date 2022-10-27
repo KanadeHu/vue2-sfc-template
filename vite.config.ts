@@ -21,6 +21,8 @@ function pathResolve(dir: string) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // 如果有cdn资源，可以替换地址
+  base: '/',
   plugins: [
     vue(),
     parseHtml({
@@ -78,5 +80,9 @@ export default defineConfig({
     reportCompressedSize: false,
     chunkSizeWarningLimit,
     outDir: OUT_DIR,
+  },
+  // 用于某些动态加载的依赖包预先构建，预构建后缓存起来，降低加载这些模块缓慢问题
+  optimizeDeps: {
+    include: [],
   },
 })
