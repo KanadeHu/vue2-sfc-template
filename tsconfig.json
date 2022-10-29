@@ -12,15 +12,38 @@
     "isolatedModules": true,
     "allowJs": true,
     "baseUrl": ".",
-    "lib": ["esnext", "dom", "DOM.Iterable", "ES6"],
+    "lib": [
+      "esnext",
+      "dom",
+      "DOM.Iterable",
+      "ES6"
+    ],
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     // 方便模块解析， 注意我们还需要配置vite中的别名，同步起来
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": [
+        "src/*"
+      ],
+      "#/*": [
+        "types/*"
+      ]
     },
-    "types": ["vite/client", "jest"]
+    "types": [
+      "vite/client",
+      "jest"
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

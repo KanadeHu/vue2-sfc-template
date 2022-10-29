@@ -1,9 +1,9 @@
 {
   "recommendations": [
-    "Vue.volar",
+    "vue.volar",
     "dbaeumer.vscode-eslint",
-    "hex-ci.stylelint-plus",
+    "stylelint.vscode-stylelint",
     "esbenp.prettier-vscode",
-    "zuoez02.tslint-snippets"
+    "mikestead.dotenv",
   ]
 }
