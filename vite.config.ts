@@ -62,7 +62,7 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      scss: {
+      less: {
         javascriptEnabled: true,
         additionalData: `@import "${variablePath}";`,
       },

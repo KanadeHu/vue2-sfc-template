@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosRequestConfig, HeadersDefaults } from 'axios'
+import type { AxiosInstance, HeadersDefaults } from 'axios'
 import axios from 'axios'
 
 import { AxiosCancel } from './axiosCancel'
@@ -46,15 +46,15 @@ export class KAxios<T extends AxiosRequestConfigByTransform> {
     if (!transform) {
       return
     }
-    const { requestInterceptors, requestInterceptorsErrorCatch, responseInterceptors, responseInterceptorsErrorCatch } =
-      transform
+    // const { requestInterceptors, requestInterceptorsErrorCatch, responseInterceptors, responseInterceptorsErrorCatch } =
+    //   transform
 
     const canceler = new AxiosCancel()
 
     this.axiosInstance.interceptors.request.use((config: AxiosRequestConfigByTransform) => {
       const { ignoreCancelToken } = config.requestOptions
       // 是否要增加canceltoken
-      let ignoreCancel: boolean = true
+      let ignoreCancel = true
 
       if (ignoreCancelToken !== undefined) {
         ignoreCancel = ignoreCancelToken
@@ -65,8 +65,8 @@ export class KAxios<T extends AxiosRequestConfigByTransform> {
       if (!ignoreCancel) {
         canceler.addPendding(config)
       }
-      
-      if (requestInterceptors)
+
+      // if (requestInterceptors)
     })
   }
 }

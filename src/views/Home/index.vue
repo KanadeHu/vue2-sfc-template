@@ -21,7 +21,6 @@ const { increment } = counterStore
 
 <style lang="scss" scoped>
 .warning-text {
-  color: $theme-color;
   text-decoration: dashed;
   backface-visibility: visible;
 }
