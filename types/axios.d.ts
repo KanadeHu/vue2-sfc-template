@@ -1,7 +1,3 @@
-export interface RequestOption {
-  apiUrl: string
-  ignoreCancelToken?: boolean
-}
 /**
  * @description 接口返回数据格式预定义(根据后台实际数据定义)
  */
