@@ -1,9 +1,10 @@
 import axios from 'axios'
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosRequestHeaders } from 'axios'
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { Message, Notification } from 'element-ui'
 import NProgress from 'nprogress'
 
 import 'nprogress/nprogress.css'
+import type { AxiosRequestConfigByError } from '#/axios'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -60,38 +61,36 @@ http.interceptors.response.use(
   },
   error => {
     NProgress.done()
-
-    Message.clear()
-    const response = { ...error.response }
-    response && Message.error(StatusCodeMessage[response.status] || '系统异常, 请检查网络或联系管理员！')
     return Promise.reject(error)
   },
 )
-
-const request = <T = unknown>(config: AxiosRequestConfig): Promise<T> => {
-  return new Promise((resolve, reject) => {
-    http
-      .request<T>(config)
-      .then((res: AxiosResponse) => resolve(res.data))
-      .catch((err: { message: string }) => reject(err))
-  })
+// 错误几种处理
+const request = async <T = unknown>(config: AxiosRequestConfigByError): Promise<T | null> => {
+  try {
+    const res = await http.request<T>(config)
+    return res.data
+  } catch (e: any) {
+    const response = { ...e.response }
+    if (response) {
+      Message.error(StatusCodeMessage[response.status] || '系统异常')
+    } else {
+      Message.error(config.errorMsg || '接口异常')
+    }
+  }
+  return null
 }
 
-request.get = <T = unknown>(url: string, params?: object, headers?: AxiosRequestHeaders): Promise<T> => {
+request.get = <T = unknown>(config: AxiosRequestConfigByError): Promise<T | null> => {
   return request({
+    ...config,
     method: 'get',
-    url,
-    params,
-    headers,
   })
 }
 
-request.post = <T = unknown>(url: string, params?: object, headers?: AxiosRequestHeaders): Promise<T> => {
+request.post = <T = unknown>(config: AxiosRequestConfigByError): Promise<T | null> => {
   return request({
+    ...config,
     method: 'post',
-    url,
-    data: params,
-    headers,
   })
 }
 
