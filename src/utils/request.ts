@@ -1,12 +1,12 @@
 import axios from 'axios'
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { Message, Notification } from 'element-ui'
+import { Message } from 'element-ui'
 import NProgress from 'nprogress'
 
 import 'nprogress/nprogress.css'
 import type { AxiosRequestConfigByError } from '#/axios'
 
-NProgress.configure({ showSpinner: false }) // NProgress Configuration
+NProgress.configure({ showSpinner: false })
 
 interface ICodeMessage {
   [propName: number]: string
@@ -48,14 +48,6 @@ http.interceptors.request.use(
 // 响应拦截器
 http.interceptors.response.use(
   (response: AxiosResponse) => {
-    const { data } = response
-    const { message, success } = data
-
-    if (!success) {
-      NProgress.done()
-      Notification.error(message || '服务器端错误')
-      return Promise.reject(new Error('Error'))
-    }
     NProgress.done()
     return response
   },
